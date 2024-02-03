@@ -1,11 +1,15 @@
-const express=require('express')
+require("dotenv").config()
+const express=require("express")
 
 const app=express()
 
-app.get("/",(req,res)=>{
-    res.json({msg:'hello world first express js program'})
+app.use((req,res,next)=>{
+console.log(req.path,req.method)
+next()
 })
-
-app.listen(8080,()=>{
-    console.log("server is running on 8080")
+app.get("/",(req,resp)=>{
+    resp.json({helloworld:"1st hello worled get requestasdf"})
+})
+app.listen(process.env.PORT,()=>{
+    console.log("hello world server running on port ",process.env.PORT)
 })
