@@ -1,15 +1,15 @@
 require("dotenv").config()
-const express=require("express")
 
+const express=require("express")
+const router=require("./routes/workouts.js")
 const app=express()
+app.listen(process.env.PORT,()=>{
+    console.log("server is running",process.env.PORT)
+})
 
 app.use((req,res,next)=>{
-console.log(req.path,req.method)
-next()
+    console.log(req.path,req.method)
+    next()
 })
-app.get("/",(req,resp)=>{
-    resp.json({helloworld:"1st hello worled get requestasdf"})
-})
-app.listen(process.env.PORT,()=>{
-    console.log("hello world server running on port ",process.env.PORT)
-})
+
+app.use("/workouts",router)
