@@ -1,35 +1,25 @@
 require("dotenv").config()
+const mongoose=require("mongoose")
 const express=require("express")
 const app=express()
-const workoutRouter=require("./Routes/workout")
-const mongoose=require("mongoose")
-const Workout=require("./Model/Workout")
+const workoutRoutes=require("./Routes/workoutRoutes")
+
 
 app.use(express.json())
-
 app.use((req,res,next)=>{
-console.log(req.path,req.method)
-next()
+    console.log(req.path,req.method)
+    next()
 })
 
-app.use("/workouts",workoutRouter)
-
-mongoose.connect(process.env.MONGOOSE_URI).then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
     app.listen(process.env.PORT,()=>{
-        console.log(process.env.PORT,"listening on 4000")
-    })
-    Workout.insertMany({workout:"bench",reps:20,rest:1}).then(()=>{
-        console.log("working data added")
-    }).catch((err)=>{
-        console.log(err)
+        console.log("server is working",process.env.PORT)
     })
 }).catch((err)=>{
-console.log(err)
+console.log("error")
 })
 
 
+app.use("/workouts",workoutRoutes)
 
-//testing
-// app.get("/",(req,res)=>{
-//     res.json({msg:"hello world from get"})
-// })
+
