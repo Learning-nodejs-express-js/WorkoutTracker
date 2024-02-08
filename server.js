@@ -1,25 +1,23 @@
 require("dotenv").config()
-const mongoose=require("mongoose")
 const express=require("express")
 const app=express()
-const workoutRoutes=require("./Routes/workoutRoutes")
+const mongoose=require("mongoose")
 
+const workoutRouter=require("./routes/workout")
 
 app.use(express.json())
+
 app.use((req,res,next)=>{
     console.log(req.path,req.method)
     next()
 })
+app.use("/workouts",workoutRouter)
 
-mongoose.connect(process.env.MONGO_URI).then(()=>{
+mongoose.connect(process.env.MONGODB_URI).then(()=>{
     app.listen(process.env.PORT,()=>{
-        console.log("server is working",process.env.PORT)
+        console.log("server is running and conencted to mongoose database")
     })
 }).catch((err)=>{
-console.log("error")
+    console.log(err)
 })
-
-
-app.use("/workouts",workoutRoutes)
-
 
