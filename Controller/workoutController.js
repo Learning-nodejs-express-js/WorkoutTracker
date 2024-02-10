@@ -64,7 +64,6 @@ const workoutPatchController=async(req,res)=>{
     catch(err){
         res.status(400).json({msg:"could not update the data"})
     }
-    
 }
 
 module.exports={workoutGetController,workoutGetByIdController,workoutPostController,workoutDeleteController,workoutPatchController}
