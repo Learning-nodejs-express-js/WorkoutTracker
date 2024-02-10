@@ -8,7 +8,7 @@ function App() {
   const {state,dispatch}=useContext(WorkoutContext);
   
   const fetchworkouts=async()=>{
-    const response=await fetch("http://localhost:4000/workouts")
+    const response=await fetch("/workouts")
     const workouts = await response.json();
     dispatch({type:"SET_WORKOUTS",payload:workouts})
   }

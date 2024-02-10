@@ -5,7 +5,7 @@ export const Workout = ({workout}) => {
   const {dispatch}=useContext(WorkoutContext)
   const deleteworkout=async(id)=>{
     try{
-      const response=await fetch("http://localhost:4000/workouts/"+id,{method:"DELETE"})
+      const response=await fetch("/workouts/"+id,{method:"DELETE"})
       
       if(response.ok){
         dispatch({type:"DELETE_WORKOUT",payload:id})

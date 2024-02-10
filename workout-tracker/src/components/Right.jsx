@@ -8,7 +8,7 @@ export const Right = () => {
   const [weight,setWeight]=useState("")
   const {dispatch}=useContext(WorkoutContext)
   const addWorkout=async()=>{
-    const response=await fetch("http://localhost:4000/workouts",{
+    const response=await fetch("/workouts",{
       method: "POST",
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
