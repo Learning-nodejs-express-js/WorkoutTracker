@@ -29,7 +29,7 @@ const workoutGetByIdController=async(req,res)=>{
 const workoutPostController=async(req,res)=>{
     try{
         const workoutadd=await workoutmodel.create(req.body)
-        res.status(200).json({msg:"data has been added ",dataadded:workoutadd})
+        res.status(200).json(workoutadd)
     }
     catch(err){
         console.log(err)
