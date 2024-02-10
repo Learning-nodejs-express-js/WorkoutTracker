@@ -3,5 +3,12 @@
     padding: 1rem;
     margin: 1rem;
     border-radius: 1rem;
-    background-color: white;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#deletebutton {
+  cursor: pointer;
 }

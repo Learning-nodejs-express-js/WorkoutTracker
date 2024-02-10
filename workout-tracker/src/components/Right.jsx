@@ -21,7 +21,6 @@ export const Right = () => {
     })
     const workouts = await response.json();
     if(response.ok){
-      console.log(workouts)
       dispatch({type:"POST_WORKOUT",payload:workouts})
     }
 
@@ -29,16 +28,16 @@ export const Right = () => {
   }
   return (
     <div className={styles.container}>
-        <div>
-            <label>title</label>
+        <div className={styles.div1}>
+            <label>Title</label>
             <input type='text' name="title" onChange={(e)=>{setTitle(e.target.value)}} value={title}></input>
         </div>
-        <div>
-            <label>reps</label>
+        <div className={styles.div2}>
+            <label>Reps</label>
             <input type='text' name="reps" onChange={(e)=>{setReps(e.target.value)}} value={reps}></input>
         </div>
-        <div>
-            <label>weight</label>
+        <div className={styles.div3}>
+            <label>Weight</label>
             <input type='text' name="weight" onChange={(e)=>{setWeight(e.target.value)}} value={weight}></input>
         </div>
         <button onClick={()=>{addWorkout()}}>Add workout</button>

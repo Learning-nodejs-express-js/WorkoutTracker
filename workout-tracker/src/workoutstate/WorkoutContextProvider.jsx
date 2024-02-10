@@ -7,8 +7,9 @@ switch(action.type){
     case 'SET_WORKOUTS':
         return [...action.payload]
     case 'POST_WORKOUT':
-        console.log( [...state,action.payload] )
         return [...state,action.payload] 
+    case "DELETE_WORKOUT":
+        return [...state].filter((workout)=>{return workout._id!==action.payload})
     default:
         return state;
 }
