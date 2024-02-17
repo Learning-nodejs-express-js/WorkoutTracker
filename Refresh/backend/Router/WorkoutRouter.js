@@ -1,26 +1,17 @@
 const express=require("express")
 
 const workoutRouter=express.Router()
+const {workoutGetAll,workoutGetById,workoutPost,workoutDelete,workoutPatch}=require("../Controller/WorkoutController")
 
-workoutRouter.get("/",(req,res)=>{
-    res.json({msg:"workout router is working"})
-})
+workoutRouter.get("/",workoutGetAll)
 
-workoutRouter.get("/:id",(req,res)=>{
-    res.json({msg:"workout with id is"+req.params})
-})
+workoutRouter.get("/:id",workoutGetById)
 
 
-workoutRouter.post("/",(req,res)=>{
-    res.json({msg:"workout that server received ",...req.body})
-})
+workoutRouter.post("/",workoutPost)
 
-workoutRouter.delete("/:id",(req,res)=>{
-    res.json({msg:"object to be delete "+req.params.id})
-})
+workoutRouter.delete("/:id",workoutDelete)
 
-workoutRouter.patch("/:id",(req,res)=>{
-    res.json({msg:"object to patch is "+req.params.id})
-})
+workoutRouter.patch("/:id",workoutPatch)
 
 module.exports=workoutRouter
