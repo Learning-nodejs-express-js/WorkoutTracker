@@ -1,0 +1,28 @@
+.workout-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .workout-title {
+    font-size: 2rem;
+    
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .workout-reps,
+  .workout-weight {
+
+    margin-bottom: 0.5rem;
+  }
+  .material-symbols-outlined:hover{
+  cursor: pointer;
+  }.minicontainer1{
+    display: flex;
+    justify-content: space-between;
+  }
