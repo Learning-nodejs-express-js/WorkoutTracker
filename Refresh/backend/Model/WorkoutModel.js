@@ -4,7 +4,6 @@ const workoutSchema=mongoose.Schema({
     title:{
         type:String,
         required:true,
-
     },
     reps:{
         type:Number,

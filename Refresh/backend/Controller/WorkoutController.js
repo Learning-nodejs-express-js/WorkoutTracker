@@ -44,9 +44,8 @@ const workoutPost=async(req,res)=>{
 const workoutDelete=async(req,res)=>{
     
     try{
-
         let obj=await workoutModel.deleteOne({_id:req.params.id})
-        res.status(200).json(obj)
+        res.status(200).json({msg:"deleted",...obj,_id:req.params.id})
     }
    catch(error){
     res.status(400).json({msg:"workout could not be retrived due to database error"})
