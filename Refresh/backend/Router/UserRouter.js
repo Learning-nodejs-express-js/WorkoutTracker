@@ -1,23 +1,13 @@
 const express=require("express")
 const bcrypt=require("bcrypt")
 
+const {signupController,loginController}=require("../Controller/UserController")
+
 const userRouter=express.Router()
 
 //signup
-userRouter.post("/signup",async(req,res)=>{
-    const password="abcd"
-    const temp=await bcrypt.genSalt(10);
-    const hashpassword=await bcrypt.hash(password,temp)
-
-    console.log(temp)
-    console.log(hashpassword)
-    console.log(await bcrypt.compare("abcd",hashpassword))
-    res.json({msg:"signup route"})
-})
-
+userRouter.post("/signup",signupController)
 
 //login
-userRouter.post("/login",async(req,res)=>{
-    res.json({msg:"login route"})
-})
+userRouter.post("/login",loginController)
 module.exports=userRouter;
