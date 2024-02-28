@@ -26,7 +26,6 @@ const loginController=async(req,res)=>{
         res.status(200).json({email:user.email,token:token})
     }
     catch(error){
-        console.log(error)
         res.status(400).json({error:error.message})
     }
 }
