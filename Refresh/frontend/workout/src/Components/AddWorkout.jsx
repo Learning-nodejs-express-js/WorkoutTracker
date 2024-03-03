@@ -1,16 +1,19 @@
 import React, { useContext, useState } from 'react';
 import './AddWorkout.css';
 import {workoutContext} from '../state/WorkoutState'
+import { useAuthContext } from '../hooks/useAuthContext';
 
 export const AddWorkout = () => {
   const [title,setTitle]=useState("");
   const [reps,setReps]=useState("");
   const [weight,setWeight]=useState("");
   const [workouts,dispatch]=useContext(workoutContext);
+  const {state}=useAuthContext()
   const addworkout=async()=>{
  const response=await fetch("/workouts",{
   method:"POST",
   headers: {
+    "authorization":`Bearer ${state.user.token}`,
     "Content-Type": "application/json",
   },
   body:JSON.stringify({  

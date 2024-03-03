@@ -1,0 +1,45 @@
+
+.loginMiniContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+}
+.loginTitle {
+    margin-bottom: 20px;
+    
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginLabel {
+    margin-bottom: 5px;
+}
+
+.loginInput {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    padding:1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.loginButton {
+    font-size: 1.2rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding:1rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    background-color: #0056b3;
+}

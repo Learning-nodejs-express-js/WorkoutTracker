@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
 import './WorkoutCard.css'; // Import the CSS file for styling
 import {workoutContext} from '../state/WorkoutState'
+import { useAuthContext } from '../hooks/useAuthContext';
 export const WorkoutCard = ({ workout }) => {
   const [state,dispatch]=useContext(workoutContext)
+  const {state:authstate}=useAuthContext();
   const deleteworkout=async()=>{
+   
     const response=await fetch("/workouts/"+workout._id,{
-      method:"DELETE"
+      method:"DELETE",
+      headers:{
+        authorization:`Bearer ${authstate.user.token}`
+      }
     })
     if(response.ok){
       const resjson=await response.json()

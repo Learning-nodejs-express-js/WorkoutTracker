@@ -1,44 +1,53 @@
-import React from 'react'
-import { Navbar } from '../Navbar'
-import { useState } from 'react'
-import {useAuthContext} from '../../hooks/useAuthContext'
+import React, { useState } from 'react';
+import { Navbar } from '../Navbar';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
+import styles from './Login.module.css'; // Import CSS module
+
 export const Login = () => {
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
-    const {state,dispatch}=useAuthContext()
-    const eventHandler=async(e)=>{
-        e.preventDefault()
-    
-        const response=await fetch("/user/login",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { state, dispatch } = useAuthContext();
+    const navigate = useNavigate();
+
+    const eventHandler = async (e) => {
+        e.preventDefault();
+        const response = await fetch("/user/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
-                "email":email,
-                "password":password
+            body: JSON.stringify({
+                "email": email,
+                "password": password
             })
+        });
+        if(response.ok){
+            const user = await response.json();
+            dispatch({ type: "LOGIN", payload: user });
+            localStorage.setItem("user", JSON.stringify(user));
         }
-        )
-        const user=await response.json();
+        else{
+            const err=await response.json();
+            console.log(err.error);
+        }
+    };
 
+    return (
+        <div className={styles.loginContainer}>
+            <Navbar />
+            <div className={styles.loginMiniContainer}>
 
-        dispatch({type:"ADD_USER",payload:user})
-
-       
-    }
-
-  return (
-    <div>
-        <Navbar></Navbar>
-        <h2>Login Form</h2>
-        <form >
-            <label htmlFor="email">Email:</label><br/>
-            <input type="email" id="email" name="email" required value={email} onChange={(e)=>{setEmail(e.target.value)}}/><br/>
-            <label htmlFor="password">Password:</label><br/>
-            <input type="password" id="password" name="password" required value={password} onChange={(e)=>{setPassword(e.target.value)}}/><br/><br/>
-            <input type="submit" value="Login" onClick={(e)=>{eventHandler(e)}}/>
-        </form>
-    </div>
-  )
-}
+            
+            <h2 className={styles.loginTitle}>Login Form</h2>
+            <form className={styles.loginForm}>
+                <label htmlFor="email" className={styles.loginLabel}>Email:</label><br/>
+                <input type="email" id="email" name="email" required className={styles.loginInput} value={email} onChange={(e) => setEmail(e.target.value)}/><br/>
+                <label htmlFor="password" className={styles.loginLabel}>Password:</label><br/>
+                <input type="password" id="password" name="password" required className={styles.loginInput} value={password} onChange={(e) => setPassword(e.target.value)}/><br/><br/>
+                <input type="submit" value="Login" className={styles.loginButton} onClick={(e) => eventHandler(e)}/>
+            </form>
+            </div>
+        </div>
+    );
+};
