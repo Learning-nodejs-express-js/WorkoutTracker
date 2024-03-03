@@ -5,7 +5,8 @@ import {workoutContext} from '../state/WorkoutState'
 export const ListWorkouts = () => {
     const [workouts,dispatch]=useContext(workoutContext)
     const fetchworkouts=async()=>{
-        const respose=await fetch("http://localhost:4000/workouts/");
+        const respose=await fetch("/workouts/");
+        console.log(respose)
         const resjson=await respose.json()
         dispatch({type:"GET_WORKOUTS",payload:resjson})
     }

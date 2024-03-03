@@ -4,7 +4,7 @@ import {workoutContext} from '../state/WorkoutState'
 export const WorkoutCard = ({ workout }) => {
   const [state,dispatch]=useContext(workoutContext)
   const deleteworkout=async()=>{
-    const response=await fetch("http://localhost:4000/workouts/"+workout._id,{
+    const response=await fetch("/workouts/"+workout._id,{
       method:"DELETE"
     })
     if(response.ok){

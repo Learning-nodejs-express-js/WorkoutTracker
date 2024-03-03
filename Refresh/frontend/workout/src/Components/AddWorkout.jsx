@@ -8,7 +8,7 @@ export const AddWorkout = () => {
   const [weight,setWeight]=useState("");
   const [workouts,dispatch]=useContext(workoutContext);
   const addworkout=async()=>{
- const response=await fetch("http://localhost:4000/workouts",{
+ const response=await fetch("/workouts",{
   method:"POST",
   headers: {
     "Content-Type": "application/json",
