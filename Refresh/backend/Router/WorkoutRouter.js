@@ -1,7 +1,10 @@
 const express=require("express")
-
+const {protectRoute}=require("../Middleware/ProtectingRoute")
 const workoutRouter=express.Router()
 const {workoutGetAll,workoutGetById,workoutPost,workoutDelete,workoutPatch}=require("../Controller/WorkoutController")
+
+workoutRouter.use(protectRoute)
+
 
 workoutRouter.get("/",workoutGetAll)
 

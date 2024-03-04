@@ -12,6 +12,10 @@ const workoutSchema=mongoose.Schema({
     weight:{
         type:Number,
         required:true,
+    },
+    userid:{
+        type:String,
+        required:true,
     }
 },{timestamps: true}
 )

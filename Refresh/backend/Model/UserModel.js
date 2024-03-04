@@ -38,6 +38,7 @@ else{
 
 //login custom function
 userSchema.statics.login=async function({email,password}){
+    console.log("inside login")
 if(!email || !password){
     throw Error("please enter a valid password")
 }

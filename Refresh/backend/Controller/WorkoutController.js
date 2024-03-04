@@ -5,7 +5,7 @@ const workoutModel=require("../Model/WorkoutModel")
 const workoutGetAll=async(req,res)=>{
     try{
 
-        let obj=await workoutModel.find({})
+        let obj=await workoutModel.find({userid:req.user._id})
         res.status(200).json(obj)
     }
    catch(error){
@@ -18,7 +18,7 @@ const workoutGetAll=async(req,res)=>{
 const workoutGetById=async(req,res)=>{
     try{
 
-        let obj=await workoutModel.findOne({_id:req.params.id})
+        let obj=await workoutModel.findOne({_id:req.params.id,userid:req.user._id})
         res.status(200).json(obj)
     }
    catch(error){
@@ -32,7 +32,7 @@ const workoutPost=async(req,res)=>{
     
     try{
         
-        let obj=await workoutModel.create(req.body)
+        let obj=await workoutModel.create({...req.body,userid:req.user._id})
         console.log(obj)
         res.status(200).json({msg:"workout created ",obj})
     }
@@ -44,7 +44,7 @@ const workoutPost=async(req,res)=>{
 const workoutDelete=async(req,res)=>{
     
     try{
-        let obj=await workoutModel.deleteOne({_id:req.params.id})
+        let obj=await workoutModel.deleteOne({userid:req.user._id,_id:req.params.id})
         res.status(200).json({msg:"deleted",...obj,_id:req.params.id})
     }
    catch(error){
@@ -56,7 +56,7 @@ const workoutPatch=async(req,res)=>{
     
     try{
 
-        let obj=await workoutModel.updateOne({_id:req.params.id}, req.body);
+        let obj=await workoutModel.updateOne({userid:req.user._id,_id:req.params.id}, req.body);
         res.status(200).json(obj)
     }
    catch(error){
